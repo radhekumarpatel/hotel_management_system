@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel Comfort Inn</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        /* General styles */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+        header {
+            background-color: rgba(0, 0, 0, 0.8);
+            color: #fff;
+            padding: 10px 0;
+            text-align: center;
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            text-align: center;
+            margin-top: 20px;
+        }
+        nav ul li {
+            display: inline;
+            margin-right: 20px;
+        }
+        nav ul li a {
+            text-decoration: none;
+            color: #fff;
+            font-size: 1.2rem;
+            transition: color 0.3s ease;
+        }
+        nav ul li a:hover {
+            color: #f7b733;
+        }
+        main {
+            padding-top: 100px;
+            text-align: center;
+        }
+        section {
+            padding: 60px 20px;
+            margin: 20px;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(to bottom, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.7) 50%, rgba(255, 255, 255, 0) 100%), url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS5itTiZm44xZcU8ABPCdbFnj-2IYQ17TkkFgO01gcnDVWve7w8MZ8rP6Fqo_Bos0Gs3F0&usqp=CAU');
+            background-size: cover;
+            background-position: center;
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        section:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+        section img {
+            max-width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+        h2 {
+            font-size: 3rem;
+            color: #333;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        p {
+            font-size: 1.5rem;
+            color: #555;
+            line-height: 1.6;
+        }
+        footer {
+            background-color: rgba(0, 0, 0, 0.8);
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+        footer p {
+            margin: 0;
+            font-size: 1rem;
+            color: #fff; /* Ensure text color is white */
+        }
+
+        /* Popup Modal styles */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1000; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+        }
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto; /* 15% from the top and centered */
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%; /* Could be more or less, depending on screen size */
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2), 0 6px 20px rgba(0,0,0,0.2);
+        }
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .modal-content h2 {
+            margin-top: 0;
+            font-size: 2rem;
+            color: #333;
+            text-align: center;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .modal-content p {
+            font-size: 1.5rem;
+            color: #555;
+            text-align: center;
+        }
+        .cta-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .cta {
+            background-color: #f7b733;
+            color: #fff;
+            padding: 15px 30px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 1.2rem;
+            transition: background-color 0.3s ease;
+        }
+        .cta:hover {
+            background-color: #ffcc33;
+        }
+    </style>
+</head>
+<body class="home">
+    <!-- Popup Modal -->
+    <div id="popupModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Welcome to Hotel Comfort Inn</h2>
+            <p>Please register if you are not an existing user or log in with your account to access our services.</p>
+            <div class="cta-container">
+                <a href="register.html" class="cta">Register</a>
+                <a href="login.html" class="cta">Login</a>
+            </div>
+        </div>
+    </div>
+
+    <header>
+        <h1>Welcome to Hotel Comfort Inn</h1>
+        <nav>
+            <ul>
+                <li><a href="login.html">Login</a></li>
+                <li><a href="register.html">Register</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section>
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS5itTiZm44xZcU8ABPCdbFnj-2IYQ17TkkFgO01gcnDVWve7w8MZ8rP6Fqo_Bos0Gs3F0&usqp=CAU" alt="Hotel Banner">
+            <div class="section-content">
+                <h2>Experience Luxury</h2>
+                <p>Discover the epitome of luxury and comfort at Hotel Comfort Inn. Whether you're traveling for business or pleasure, indulge in our world-class services and amenities.</p>
+                <a href="services.html" class="cta">Explore Our Services</a>
+            </div>
+        </section>
+        <section>
+            <div class="section-content">
+                <h2>Why Choose Us?</h2>
+                <div class="reasons">
+                    <div class="reason">
+                        <h3>Prime Location</h3>
+                        <p>Located in the heart of the city with easy access to attractions.</p>
+                    </div>
+                    <div class="reason">
+                        <h3>Luxurious Amenities</h3>
+                        <p>Enjoy modern amenities including spa, pool, and fine dining.</p>
+                    </div>
+                    <div class="reason">
+                        <h3>Exceptional Service</h3>
+                        <p>Our dedicated staff ensures your comfort and satisfaction.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 Our Hotel. All rights reserved.</p>
+    </footer>
+
+    <!-- JavaScript for Modal Popup -->
+    <script>
+        // Get the modal
+        var modal = document.getElementById("popupModal");
+
+        // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName("close")[0];
+
+        // When the page loads, show the modal
+        window.onload = function() {
+            modal.style.display = "block";
+        }
+
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function() {
+            modal.style.display = "none";
+        }
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
+</body>
+</html>

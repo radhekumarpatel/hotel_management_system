@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment - Hotel Booking</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .container {
+            width: 100%;
+            max-width: 500px;
+            margin: auto;
+            padding: 2rem;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        .header h1 {
+            color: #333;
+            font-size: 2.5rem;
+            margin: 0;
+        }
+        .details {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+        }
+        .details p {
+            font-size: 1rem;
+            color: #333;
+            margin: 0.5rem 0;
+        }
+        .details .amount {
+            font-weight: bold;
+        }
+        .form button[type="submit"] {
+            background-color: #333;
+            color: #fff;
+            border: none;
+            padding: 0.75rem 1rem;
+            font-size: 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            width: 100%;
+            max-width: 200px;
+            margin: auto;
+            display: block;
+        }
+        .form button[type="submit"]:hover {
+            background-color: #555;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 2rem;
+            color: #666;
+        }
+        .footer p {
+            font-size: 0.85rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Confirm Booking</h1>
+        </div>
+        <div class="details">
+            <p>Room Type: <span id="roomType"></span></p>
+            <p>Price: <span id="price"></span></p>
+            <p>Service Charge: <span id="serviceCharge"></span></p>
+            <p>HST: <span id="hst"></span></p>
+            <p>Total: <span id="totalAmount" class="amount"></span></p>
+        </div>
+        <div class="form">
+            <button type="submit" id="confirmButton">Confirm Booking</button>
+        </div>
+        <div class="footer">
+            <p>&copy; 2024 Hotel Comfort Inn. All rights reserved.</p>
+        </div>
+    </div>
+
+    <script>
+        // Extract query parameters from URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const roomType = urlParams.get('room_type');
+        const checkinDate = urlParams.get('checkin_date');
+        const checkoutDate = urlParams.get('checkout_date');
+        const pricePerNight = parseInt(urlParams.get('price'), 10);
+
+        // Calculate total amount
+        const checkin = new Date(checkinDate);
+        const checkout = new Date(checkoutDate);
+        const nights = (checkout - checkin) / (1000 * 60 * 60 * 24);
+        const price = nights * pricePerNight;
+        const serviceCharge = 0.1 * price; // Example: 10% service charge
+        const hst = 0.13 * (price + serviceCharge); // Example: 13% HST
+        const totalAmount = price + serviceCharge + hst;
+
+        // Populate the details
+        document.getElementById('roomType').innerText = roomType;
+        document.getElementById('price').innerText = `$${price.toFixed(2)}`;
+        document.getElementById('serviceCharge').innerText = `$${serviceCharge.toFixed(2)}`;
+        document.getElementById('hst').innerText = `$${hst.toFixed(2)}`;
+        document.getElementById('totalAmount').innerText = `$${totalAmount.toFixed(2)}`;
+
+        document.getElementById('confirmButton').addEventListener('click', function() {
+            alert('Booking successful! Please pay the shown charges at the hotel when you check-in.');
+            window.location.href = 'thank-you.html'; // Redirect to thank-you page
+        });
+    </script>
+</body>
+</html>

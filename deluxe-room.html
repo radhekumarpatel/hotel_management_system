@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deluxe Room - Hotel Booking</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+        header {
+            background-color: #004d99;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+        }
+        main {
+            padding: 20px;
+            text-align: center;
+        }
+        .room-details {
+            background-color: white;
+            padding: 20px;
+            margin: 20px auto;
+            border-radius: 10px;
+            width: 80%;
+            max-width: 600px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        img {
+            width: 100%;
+            height: auto;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        h2, h3 {
+            color: #004d99;
+        }
+        p {
+            color: #666;
+            line-height: 1.6;
+        }
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+        form {
+            margin-top: 20px;
+        }
+        input, button {
+            padding: 10px;
+            margin-top: 5px;
+            width: 300px;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #5c67f2;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #4a54e1;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Deluxe Room</h1>
+    </header>
+    <main>
+        <div class="room-details">
+            <img src="https://media.licdn.com/dms/image/D4D12AQFZV-WCSGcQ8Q/article-cover_image-shrink_600_2000/0/1679880757083?e=2147483647&v=beta&t=oM75DL5PYsf9IbbfnFm1PTaEfT99ePWdmn3CUz_c0lw" alt="Deluxe Room Image">
+            <h2>Deluxe Room</h2>
+            <p>Our Deluxe Room offers luxurious accommodations with beautiful views and modern amenities. Perfect for a comfortable stay.</p>
+            <h3>Price: $200 per night</h3>
+            <form id="availabilityForm">
+                <label for="checkin-date">Check-in:</label>
+                <input type="date" id="checkin-date" name="checkin_date" required>
+                <label for="checkout-date">Check-out:</label>
+                <input type="date" id="checkout-date" name="checkout_date" required>
+                <button type="submit">Check Availability</button>
+            </form>
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2024 Hotel Comfort Inn. All rights reserved.</p>
+    </footer>
+    <script>
+        document.getElementById('availabilityForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+            const checkin_date = document.getElementById('checkin-date').value;
+            const checkout_date = document.getElementById('checkout-date').value;
+
+            fetch('http://ec2-3-96-204-231.ca-central-1.compute.amazonaws.com:3000/check-availability', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ roomType: 'Deluxe Room', bookingDate: checkin_date, checkOutDate: checkout_date })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.message === 'Room available') {
+                    alert('Room is available. Proceeding to booking.');
+                    window.location.href = `payment.html?room_type=Deluxe Room&checkin_date=${checkin_date}&checkout_date=${checkout_date}&price=200`;
+                } else {
+                    alert('Room is not available for the selected dates.');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        });
+    </script>
+</body>
+</html>

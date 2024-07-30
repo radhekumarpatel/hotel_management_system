@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services - Hotel Booking</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+            color: #333;
+        }
+        header {
+            background-color: #004d99; /* Dark blue background */
+            color: #fff;
+            padding: 20px 0;
+            text-align: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        header h1 {
+            font-size: 2rem;
+            color: #ffcc00; /* Gold color for the title */
+        }
+        main {
+            padding-top: 80px;
+            text-align: center;
+        }
+        .rooms {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: 20px 0;
+        }
+        .room {
+            background-color: #ffffff;
+            margin: 10px;
+            width: 300px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+            transition: transform 0.3s ease-in-out;
+            padding: 20px;
+        }
+        .room:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+        }
+        .room img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+        .room h3 {
+            margin: 5px 0;
+            color: #004d99; /* Dark blue for headings */
+            font-size: 1.4rem;
+        }
+        .room p {
+            font-size: 1rem;
+            color: #666;
+            margin-bottom: 15px;
+        }
+        .room button {
+            background-color: #ff6600; /* Vibrant orange */
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s ease-in-out;
+        }
+        .room button:hover {
+            background-color: #e65c00; /* Darker shade of orange */
+        }
+        footer {
+            background-color: #004d99; /* Dark blue background */
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+        footer p {
+            font-size: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Explore Our Rooms</h1>
+    </header>
+    <main>
+        <div class="rooms">
+            <div class="room">
+                <img src="https://image-tc.galaxy.tf/wijpeg-bptrdb2f3ww3w0n68pcuyrqot/deluxe-room-twin-1-2000px_wide.jpg?crop=0%2C78%2C2000%2C1125" alt="Deluxe Room">
+                <h3>Deluxe Room</h3>
+                <p>Enjoy luxury and comfort. $200/night.</p>
+                <button onclick="location.href='deluxe-room.html'">Book Now</button>
+            </div>
+            <div class="room">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS7CbVZwSc1BcChTPzfn_cewGZhdXpHWQ2NcQ&s" alt="Standard Room">
+                <h3>Standard Room</h3>
+                <p>Cozy and affordable. $150/night.</p>
+                <button onclick="location.href='standard-room.html'">Book Now</button>
+            </div>
+            <div class="room">
+                <img src="https://discoveryshoresboracaydemo.hotelpropeller.com/files/2019/01/Signature-One-Bedroom-Suite.jpg" alt="Suite Room">
+                <h3>Suite Room</h3>
+                <p>Spacious suite with stunning views. $300/night.</p>
+                <button onclick="location.href='suite-room.html'">Book Now</button>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2024 Hotel Comfort Inn. All rights reserved.</p>
+    </footer>
+</body>
+</html>

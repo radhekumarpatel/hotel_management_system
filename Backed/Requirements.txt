@@ -1,0 +1,21 @@
+sudo yum update -y
+sudo yum install -y httpd
+sudo systemctl start httpd
+sudo systemctl enable httpd
+sudo yum install -y mariadb-server
+sudo systemctl start mariadb
+sudo systemctl enable mariadb
+sudo mysql_secure_installation
+sudo yum install -y php php-mysql
+sudo systemctl restart httpd
+
+sudo mysql -u root -p
+
+sudo yum install -y mod_proxy mod_proxy_http
+
+sudo chmod +rx /var/www/html/register.php
+sudo chmod +rx /var/www/html/login.php
+sudo chmod +rx /var/www/html/services.php
+
+
+sudo systemctl restart httpd
